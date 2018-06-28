@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <title>dos move files from multiple folders</title>
+  </head>
+  <body>
+    <div id="question-header">
+      <h1><span class="question-hyperlink">DOS command to move all files
+          in subdirectories one level up</span></h1>
+      <p><br>
+      </p>
+    </div>
+    <div class="question" data-questionid="4701260" id="question">
+      <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1"><img
+src="http://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NCwiY20iOjg0NywiY2giOjExNzgsImNyIjo1OTIwLCJkaSI6ImM0YjMwMDYxMThiOTRhNzc5OWUyM2Q3NzhiNTdmOGEwIiwiZG0iOjEsImZjIjo4ODA2LCJmbCI6MjQ0NCwia3ciOiJ3aW5kb3dzLXhwLGRvcyxtcy1kb3MsYmF0Y2gtZmlsZSIsIm53IjoyMiwicmYiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzQ3MDEyNjAvZG9zLWNvbW1hbmQtdG8tbW92ZS1hbGwtZmlsZXMtaW4tc3ViZGlyZWN0b3JpZXMtb25lLWxldmVsLXVwIiwicnYiOjAsInByIjoxNTY4LCJzdCI6ODI3Nywiem4iOjQzfQ&amp;s=2rivsNZfy1sGXmKh5Bk-vswSa0s"
+          height="0px" border="0" width="0px"></div>
+      <a
+href="http://stackoverflow.com/questions/4701260/dos-command-to-move-all-files-in-subdirectories-one-level-up">http://stackoverflow.com/questions/4701260/dos-command-to-move-all-files-in-subdirectories-one-level-up</a><br>
+    </div>
+    <br>
+    <p>I have a folder with a lot of sub folders with one or more files
+      in each. I am trying to write a batch file that moves all those
+      files to C:\songs (for example). Any help? I have already tried </p>
+    <pre><code>C:\&gt;FOR /R C:\Test %i IN (*) DO MOVE %i C:\Songs
+</code></pre>
+    <p>The folders Test and songs exist, but I get an error saying </p>
+    <pre><code>%i was unexpected at this time. 
+</code></pre>
+    What am I doing wrong<br>
+    ----<br>
+    <div class="post-text">
+      <pre><code>FOR /R %i IN (C:\Test\*) DO MOVE "%i" C:\Songs
+</code></pre>
+      <p>In a batch file, it has to be %%i. Weird quirk of batch.<br>
+        ------------<br>
+        <span class="comment-copy">FOR /R %i IN (.\folder\subfolder\*)
+          DO MOVE "%i" .\folder\</span> –&nbsp;<a
+          href="http://stackoverflow.com/users/307295/mvmn" title="485
+          reputation" class="comment-user">mvmn</a> <span
+          class="comment-date" dir="ltr"><a class="comment-link"
+href="http://stackoverflow.com/questions/4701260/dos-command-to-move-all-files-in-subdirectories-one-level-up#comment16453403_4701328"><span
+              title="2012-09-04 19:28:19Z" class="relativetime-clean">Sep
+              4 '12 at 19:28</span></a><br>
+          --------------<br>
+        </span></p>
+      <div class="post-text">
+        <p>(move files in sub-directories up 1)</p>
+        <pre><code>for /r %x in (*.*) do move "%x" "%x"/../..
+</code></pre>
+        <p>(last part I usually use backward slants but this crazy thing
+          kept deleting them for some reason. It'll work either way
+          though)</p>
+        <p>(delete unneeded directories)</p>
+        <pre><code>for /d /r %x in (bin) do rd "%x"
+</code></pre>
+        <p>i.e., if you had a bunch of directories with files in "bin"
+          directories under those and you wanted to move everything up 1
+          and delete the "bin" directories.<br>
+          -------------<br>
+        </p>
+        <div class="post-text">
+          <p>This works (change <code>*</code> to <code>*.*</code>)</p>
+          <pre><code>FOR /R C:\Test %i IN (*.*) DO MOVE %i C:\Songs<br>-----<br></code><code><span class="comment-copy">Changing DO MOVE %i to DO MOVE "%i" works.<br>---</span></code></pre>
+        </div>
+      </div>
+    </div>
+    &nbsp; <br>
+    <br>
+    <h1> dos-command-to-move-all-files-from-all-subdir-to-one-folder</h1>
+    <a
+href="http://stackoverflow.com/questions/7629732/dos-command-to-move-all-files-from-all-subdir-to-one-folder">http://stackoverflow.com/questions/7629732/dos-command-to-move-all-files-from-all-subdir-to-one-folder</a><br>
+    <br>
+    <p>i want to write 2 batch files.</p>
+    <br>
+    1st: batch file is eg:<br>
+    <p>move all files in subdirs to root dir. eg:</p>
+    <pre><code>Folder1
+|_folder2
+|___files.jpg
+|_folder3
+|___files.jpg
+</code></pre>
+    <p>i want to move all files in folders of folder1 to folder1</p>
+    2nd batch file is eg:
+    <pre><code>Folder1
+|_folder2
+|___JPEG
+|_____files.jpg
+|_folder3
+|___JPEG
+|_____files.jpg
+</code></pre>
+    <p>Need to Delete all files in sub dir then move files from JPEG one
+      level up -to folder2 for example- and rename it to thumbnail.png
+      for example.</p>
+    <p>I tryed </p>
+    <pre><code>for /r %%f in (*) do ren "%%f" thumbnail.jpg 
+</code></pre>
+    <p>to rename all files but dont know how to delete all files in same
+      folder that containe jpeg folder and how to move files one level
+      up.<br>
+      -----<br>
+    </p>
+    <p>Here's a solution to your first question, as I understand it:</p>
+    <pre><code>@echo off
+setlocal
+set root=Folder1
+for /f "delims=" %%f in ('dir /ad /b /s %root%') do @move "%%f\*.*" %root%
+endlocal
+</code></pre>
+    <p>As I've written it all files at any level are moved. If you only
+      want first level subdirectory files moved, then get rid of the /s.</p>
+    <p>For your second problem, try a similar approach, but with</p>
+    <pre><code>dir /a-d /b
+</code></pre>
+    <p>to list all the entries that aren't sub-directories (ie, skip
+      JPEG). This will let you construct the <em>for</em> statement
+      that does the deletion, then do another statement that does the
+      move and rename.</p>
+    <p>You might want to look at calling a sub-routine to do the move,
+      rename, delete. You could then manipulate the filename to change
+      the name. I'm a bit confused about exactly what you want to do in
+      the second case. Also have a look a the help on the <em>set</em>
+      and <em>call</em> commands if your not sure about extracting the
+      filename and other string manipulations.</p>
+    <h1>I am trying to move multiple files in one directory to another
+      <br>
+    </h1>
+    <p> <a
+href="http://www.velocityreviews.com/forums/t611119-dos-move-command-help.html">http://www.velocityreviews.com/forums/t611119-dos-move-command-help.html</a><br>
+    </p>
+    <br>
+    I am trying to move multiple files in one directory to another<br>
+    directory in DOS. Its not working.<br>
+    <br>
+    move "C:\temp\*.*" "D:data\files"<br>
+    <br>
+    The filename, directory name or volume label syntax is incorrect.<br>
+    -----------<br>
+    Try<br>
+    move C:\temp D:\data\files<br>
+    <br>
+    may not be exactly what you want but it does not give you any error.<br>
+    <br>
+    some explanation-<br>
+    I haven't used it much, I tend to use copy and then delete the<br>
+    original directory.<br>
+    So just playing with move, have not had much time to really see all<br>
+    its workings/behaviour.<br>
+    <br>
+    try removing the *.*<br>
+    suprisingly, it seems to cause an error, it does *.* by default<br>
+    <br>
+    U:\&gt;move u:\a\*.* u:\c<br>
+    The filename, directory name, or volume label syntax is incorrect.<br>
+    <br>
+    another interesting thing,<br>
+    when you remove the *.*<br>
+    remove the backslash too, so remove \*.*<br>
+    it seems that when passing directories to move, it fails, if you<br>
+    follow them with a backslash.<br>
+    <br>
+    U:\&gt;move u:\a u:\c<br>
+    <br>
+    It may not matter, but you also said d:dir, it is probably better to<br>
+    say d:\dir. It is fine to say d:filename I think..<br>
+    <br>
+    You said<br>
+    move "C:\temp\*.*" "D:data\files"<br>
+    <br>
+    Try<br>
+    move C:\temp D:\data\files<br>
+    <br>
+    a)removed quotes. no long filenames so not needed<br>
+    b)removed *.*, that seemed to cause the error, and removed the \<br>
+    before it, so the directory does not end in a backslash.<br>
+    c)put a \ preceding data. e.g. directories are specified
+    c:\dir1\dir2<br>
+    e.t.c.<br>
+    ---------------<br>
+    <div style="padding-bottom: 0px; padding-left: 0px; padding-right:
+      0px; padding-top: 6px">
+      <h1>To move one or more files: </h1>
+    </div>
+    <a href="http://www.computerhope.com/movehlp.htm">http://www.computerhope.com/movehlp.htm</a><br>
+    <p>To move one or more files:<br>
+      MOVE [/Y | /-Y] [drive:][path]filename1[,...] destination</p>
+    <p>To rename a directory:<br>
+      MOVE [/Y | /-Y] [drive:][path]dirname1 dirname2</p>
+    <table class="mtable">
+      <tbody>
+        <tr class="tcw">
+          <td>[drive:][path]filename1</td>
+          <td>Specifies the location and name of the file or files you
+            want to move.</td>
+        </tr>
+        <tr class="tcw">
+          <td>destination</td>
+          <td>Specifies the new location of the file. Destination can
+            consist of a drive letter and colon, a directory name, or a
+            combination. If you are moving only one file, you can also
+            include a filename if you want to rename the file when you
+            move it.</td>
+        </tr>
+        <tr class="tcw">
+          <td>[drive:][path]dirname1</td>
+          <td>Specifies the directory you want to rename.</td>
+        </tr>
+        <tr class="tcw">
+          <td>dirname2</td>
+          <td>Specifies the new name of the directory.</td>
+        </tr>
+        <tr class="tcw">
+          <td>/Y</td>
+          <td>Suppresses prompting to confirm you want to overwrite an
+            existing destination file.</td>
+        </tr>
+        <tr class="tcw">
+          <td>/-Y</td>
+          <td>Causes prompting to confirm you want to overwrite an
+            existing destination file.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>The switch /Y may be present in the COPYCMD environment variable.
+      This may be overridden with /-Y on the command line. Default is to
+      prompt on overwrites unless MOVE command is being executed from
+      within a batch script.</p>
+    <h2 class="nb">Examples</h2>
+    <p class="tcy">move c:\windows\temp\*.* c:\temp</p>
+    <p>Move the files of c:\windows\temp to the temp directory in root,
+      this is of course assuming you have the windows\temp directory.</p>
+    <p class="tcy">move "computer hope" example</p>
+    <p>If your directory name has a space, it must be surrounded with <a
+        href="http://www.computerhope.com/jargon/q/quote.htm">quotes</a>,
+      otherwise you will get a "<a
+        href="http://www.computerhope.com/issues/ch001336.htm">The
+        syntax of the command is incorrect</a>." error message. In the
+      above example, this command would move the "computer hope"
+      directory into the example directory contained in the same
+      directory.</p>
+  </body>
+</html>

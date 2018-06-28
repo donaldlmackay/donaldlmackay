@@ -1,0 +1,58 @@
+<?php include ("head.html"); ?>
+
+<h1>How to Compare Text Files Using diff</h1>
+<p class="indent">
+If you need to compare two text files in Unix, you're mostly likely to use the <a href="http://en.wikipedia.org/wiki/Diff">diff</a> command.<br><br>
+Taken from <a href="http://www.unixtutorial.org/2008/02/compare-text-files-using-diff/">http://www.unixtutorial.org/2008/02/compare-text-files-using-diff/</a><br><br>
+Suppose you have two files in /tmp directory:<br>
+/tmp/1.txt:<br><br>
+aaa<br>
+bbb<br>
+ccc<br>
+ddd<br>
+eee<br>
+fff<br>
+ggg<br><br>
+and /tmp/2.txt:<br><br>
+bbb<br>
+c c<br>
+ddd<br>
+eee<br>
+fff<br>
+ggg<br>
+hhh<br><br>
+I have deliberately created them so short and simple - this way it's easier to explain how the comparison works. If there are no differences between the files, you will see no output, but if two text files are indeed different, all the text mismatches will be highlighted using the standard diff output:<br><br>
+$ diff /tmp/1.txt /tmp/2.txt<br>
+1d0<br>
+&lt; aaa<br>
+3c2<br>
+&lt; ccc<br>
+---<br>
+&gt; c c<br>
+7a7<br>
+&gt; hhh<br><br>
+Lines like "1d0" and "3c2" are the coordinates and types of the differences between the two compared files, while lines like "&lt; aaa" and "&gt; hhh" are the differences themselves.<br><br>
+Diff change notation includes 2 numbers and a character between them. Characters tell you what kind of change was discovered:<br><br>
+d - a line was deleted<br>
+c - a line was changed<br>
+a - a line was added<br><br>
+Number to the left of the character gives you the line number in the original (first) file, and the number to the right of the character tells you the line number in the second file used in comparison.<br><br>
+So, looking at the two text files and the diff output above, you can see what happened:<br><br>
+This means that 1 line was deleted. &lt; aaa suggests that the aaa line is present only in the original file:<br><br>
+1d0<br>
+&lt; aaa<br><br>
+And this means that the line number 3 has changed. You can see how this confirms that in the first file the line was "ccc", and in the second it now is "c c".<br><br>
+3c2<br>
+&lt; ccc<br>
+---<br>
+&gt; c c<br><br>
+Finally, this confirms that one new line appeared in the second file, it's "hhh" in the line number 7:<br><br>
+7a7<br>
+&gt; hhh
+<br><br>
+
+<?php include ("Last-modified.txt");  ?>
+
+
+<?php include ("foot.html"); ?>
+<!-- END -->

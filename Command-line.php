@@ -1,0 +1,31 @@
+<?php include ("head.html"); ?>
+
+<h1>Command line</h1>
+
+<p class="indent">
+</p>
+<ul>
+  <li>Command Prompt - The DOS-like command line interpreter. One of the
+ most powerful tools in Windows, you can use it to automate processes,
+run batch files, and perform troubleshooting and diagnostic tasks.</li>
+  <li>Command Prompt Here - Makes
+ it easier to perform a command task at that folder or drive location
+instead of having to open a command prompt normally and manually type
+the folder location in it using the CD\ command. For Windows Vista this
+feature is already built in the operating system. Open a Windows Explorer
+ windows, browse to the required folder. Right-click that folder in the
+right pane of the Windows Explorer window. Note that you do NOT have the
+ "Open Command Prompt Here" option.
+Now, hold the SHIFT key while you right-click the folder, and it will appear.<br>
+  </li>
+  <li>Windows PowerShell - command-line shell with Object-Oriented scripting language .</li>
+  <li>PowerGUI - Enables GUI testing of PowerShell commands.<br>
+</li>
+</ul>
+<br><br>
+
+<?php include ("Last-modified.txt");  ?>
+
+
+<?php include ("foot.html"); ?>
+<!-- END -->
