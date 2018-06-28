@@ -1,0 +1,19 @@
+<h1>How to ensure context menu entries picks up directory against
+  which it is right clicked</h1>
+Details for the context menu are held in the windows registry. Use
+the registry editor (carefully) to modify the windows registry.<br>
+<ol>
+  <li>Find the registry key of the program/utility e.g. "RenamerNG".
+  </li>
+  <li>Use regscanner, part of the nirsoft utilities set, rather than
+    registry editor direct. When it finds a string and you click on
+    that string, regscanner opens registry editor for that string.
+    e.g.
+    HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\RenamerNG\command
+    with the program name (and its directory location) data field
+    e.g. C:\Program Files (x86)\RenamerNG\RenamerNG.exe</li>
+  <li>Add %0 to the end of the data field e.g. C:\Program Files
+    (x86)\RenamerNG\RenamerNG.exe %0. </li>
+  <li>This %0 parameter collects the directory against which it is
+    right clicked</li>
+</ol>
