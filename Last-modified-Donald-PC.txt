@@ -1,0 +1,6 @@
+<br><br>
+<?php
+// changed 28 March 2016
+// outputs e.g. 'Last modified: 04 March 1998.'
+echo "LAST UPDATED: " . date ("d F Y", getlastmod()) . " (Same IP Address added)";
+?>

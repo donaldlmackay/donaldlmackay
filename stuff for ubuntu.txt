@@ -1,0 +1,13 @@
+f ullscreen
+l seamless mode
+c scaled mode
+g auto resize
+a djust window size
+
+4 3 6
+ubuntu-14-04
+
+sudo apt-get install virtualbox-guest-dkms
+
+donaldlmackay@yahoo.co.uk
+http://askubuntu.com/questions/450280/open-in-terminal-action-in-nautilus-in-ubuntu-14-04

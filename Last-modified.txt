@@ -1,0 +1,7 @@
+
+
+<br><br>
+<?php
+// outputs e.g. 'Last modified: 04 March 1998.'
+echo "LAST UPDATED: 02 February 2018 (Bluetooth File Transfer)";
+?>

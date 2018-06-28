@@ -1,0 +1,38 @@
+<?php include ("head.html"); ?>
+
+<h1>Using Microsoft Works to print address labels</h1>
+<ol>
+<li>Start with Microsoft Works</li>
+<li>In "Choose a category" select "letters and labels" and within that select "return address and labels"</li>
+<li>This then fires up Works Word and asks what kind of labels.</li>
+<li>Select "Mailing labels" (which requires a data source)</li>
+<li>Choose how many labels to a page. Chose 3 x 6 (3 across by 6 down)</li>
+<li>You are then prompted to select data. Choose "another type of file".</li>
+<li>By default you are prompted to choose a Works database.</li>
+ Other choices are excel and CSV (more later). Tried excel but could not make it work. Tried database and CSV. Both worked fine.</li>
+<li>If you chose database, there are quite few bits of theory needed to follow what you are doing and why. A specialist subjects for 20+ years. It is bit over the top for labels.</li>
+<li>Chose CSV. It stands for Comma Separated Values.<br/>
+If you take this as an example. It shows how a couple of rows of a spreadsheet appear:-<br/>
+<pre>
+Fuller         Andrew         Vice President, Sales         1235 Main St.  Tacoma         14222          USA
+Leverling      Janet          Sales Representative          1235 Elm St.   Kirkland       14222          USA
+</pre>
+As CSV it appears all compressed, separated with commas:-
+<pre>
+"Fuller","Andrew","Vice President, Sales","1235 Main St.","Tacoma",14222,"USA"
+"Leverling","Janet","Sales Representative","1235 Elm St.","Kirkland",14222,"USA"
+</pre>
+<li>So need to interrupt the labels in step 6 above.</li>
+<li>Go back to the Spreadsheet and save it as a CSV.</li>
+<li>Resume from step 6 and choose CSV.</li>
+<li>Follow the prompts to complete the label.</li>
+<li>Check with print preview that all looks fine.</li>
+<li>Save file as Works Document (.wps)</li>
+</ol>
+<br><br>
+
+<?php include ("Last-modified.txt");  ?>
+
+
+<?php include ("foot.html"); ?>
+<!-- END -->
